@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animacion css</title>
+    <link rel="stylesheet" href="animacion_css.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <script src="animacion_css.js" defer></script>
+</head>
+<body>
+    <!---------------------------------->
+    <!--|estructuracion_animacion_css|-->
+    <!---------------------------------->
+    <main class="app">
+        <!-- ENCABEZADO: título y descripción -->
+        <header class="encabezado">
+            <h1>Animación CSS</h1>
+            <p>Una figura que se mueve con animaciones hechas solo con CSS.</p>
+        </header>
+        <!-- ESCENARIO: la caja oscura donde se mueve la figura -->
+        <section id="escenario" class="escenario" aria-label="Escenario de animación">
+            <!-- La figura: JavaScript le cambia las clases para variar forma y movimiento -->
+            <div id="figura" class="figura"></div>
+        </section>
+        <!-- PANEL DE CONTROLES -->
+        <section class="panel">
+            <h2>Controles</h2>
+            <!-- Agrupamos los controles para detectar sus cambios con un solo evento -->
+            <form id="controles" onsubmit="return false">
+                <!-- Fila 1: forma y movimiento -->
+                <div class="fila">
+                    <!-- Lista para elegir la forma de la figura -->
+                    <div class="campo">
+                        <label for="forma">Forma</label>
+                        <select id="forma">
+                            <option value="circulo">Círculo</option>
+                            <option value="cuadrado">Cuadrado</option>
+                            <option value="triangulo">Triángulo</option>
+                        </select>
+                    </div>
+                    <!-- Lista para elegir el tipo de movimiento -->
+                    <div class="campo">
+                        <label for="movimiento">Movimiento</label>
+                        <select id="movimiento">
+                            <option value="horizontal">Ir y volver</option>
+                            <option value="vertical">Subir y bajar</option>
+                            <option value="giro">Girar</option>
+                            <option value="orbita">Órbita</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Fila 2: color y duración -->
+                <div class="fila">
+                    <!-- Selector de color -->
+                    <div class="campo">
+                        <label for="color">Color</label>
+                        <input type="color" id="color">
+                    </div>
+                    <!-- Deslizador de duración: más segundos = más lento -->
+                    <div class="campo">
+                        <label for="duracion">Duración: <span id="duracionTexto">3 s</span></label>
+                        <input type="range" id="duracion" min="1" max="8" step="0.5">
+                    </div>
+                </div>
+            </form>
+            <!-- Botones de acción -->
+            <div class="botones">
+                <button id="btnPausa" class="boton" type="button">Pausar</button>
+                <button id="btnRestablecer" class="boton-claro" type="button">Restablecer</button>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

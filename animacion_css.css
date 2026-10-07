@@ -1,0 +1,167 @@
+/* ===== VARIABLES DE COLOR Y MEDIDAS (se usan en todo el archivo) ===== */
+:root {
+    --fondo: #f4f1ec;          /* fondo de la página */
+    --panel: #ffffff;          /* fondo de las tarjetas */
+    --texto: #232029;          /* color principal del texto */
+    --texto-suave: #6c6874;    /* textos secundarios */
+    --borde: #dcd8d0;          /* color de los bordes */
+    --escenario: #1c2233;      /* fondo oscuro del escenario */
+    --acento: #3b3a66;         /* color de los botones */
+    --recorrido: 200px;        /* distancia del movimiento horizontal */
+    --radio: 90px;             /* radio de la órbita */
+}
+/* En pantallas pequeñas el recorrido es menor para no salirse del escenario */
+@media (max-width: 480px) {
+    :root { --recorrido: 100px; --radio: 70px; }
+}
+/* ===== REINICIO BÁSICO ===== */
+* {
+    box-sizing: border-box;    /* el padding no agranda los elementos */
+    margin: 0;
+    padding: 0;
+}
+/* ===== ESTILO GENERAL DE LA PÁGINA ===== */
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+    padding: 24px 16px;
+}
+/* Contenedor central con ancho máximo */
+.app {
+    max-width: 560px;
+    margin: 0 auto;
+}
+/* ===== ENCABEZADO ===== */
+.encabezado {
+    margin-bottom: 20px;
+}
+.encabezado h1 {
+    font-size: 2rem;
+    color: var(--acento);
+}
+.encabezado p {
+    color: var(--texto-suave);
+}
+/* ===== ESCENARIO ===== */
+.escenario {
+    --color: #e4572e;          /* color de la figura (JavaScript lo cambia) */
+    --duracion: 3s;            /* duración de la animación (JavaScript la cambia) */
+    height: 260px;
+    background: var(--escenario);
+    border-radius: 12px;
+    display: flex;             /* centra la figura dentro del escenario */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;          /* oculta lo que se salga de la caja */
+    margin-bottom: 16px;
+}
+/* ===== FIGURA ===== */
+.figura {
+    width: 64px;
+    height: 64px;
+    background: var(--color);
+}
+/* Tres formas posibles */
+.forma-circulo { border-radius: 50%; }
+.forma-cuadrado { border-radius: 8px; }
+.forma-triangulo { clip-path: polygon(50% 0, 0 100%, 100% 100%); }
+/* ===== MOVIMIENTOS: cada clase usa una animación (@keyframes) ===== */
+.mov-horizontal {
+    animation: horizontal var(--duracion) ease-in-out infinite alternate;
+}
+.mov-vertical {
+    animation: vertical var(--duracion) ease-in-out infinite alternate;
+}
+.mov-giro {
+    animation: giro var(--duracion) linear infinite;
+}
+.mov-orbita {
+    animation: orbita var(--duracion) linear infinite;
+}
+/* Define los pasos de cada animación: de "from" (inicio) a "to" (final) */
+@keyframes horizontal {
+    from { transform: translateX(calc(var(--recorrido) * -1)); }
+    to { transform: translateX(var(--recorrido)); }
+}
+@keyframes vertical {
+    from { transform: translateY(-80px); }
+    to { transform: translateY(80px); }
+}
+@keyframes giro {
+    to { transform: rotate(360deg); }
+}
+/* Órbita: se aleja del centro y gira; el segundo rotate evita que la figura se voltee */
+@keyframes orbita {
+    from { transform: rotate(0deg) translateX(var(--radio)) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(var(--radio)) rotate(-360deg); }
+}
+/* Cuando el escenario tiene la clase "pausada", la animación se detiene */
+.escenario.pausada .figura {
+    animation-play-state: paused;
+}
+/* ===== PANEL DE CONTROLES ===== */
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 20px;
+}
+.panel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+.fila {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;    /* etiqueta arriba, control abajo */
+    gap: 4px;
+}
+label {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+select,
+input[type="color"] {
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+}
+input[type="range"] {
+    height: 40px;              /* misma altura que los demás controles */
+}
+/* ===== BOTONES ===== */
+.botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+.boton,
+.boton-claro {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.boton {
+    background: var(--acento);
+    color: #fff;
+    border: none;
+}
+.boton-claro {
+    background: none;
+    color: var(--acento);
+    border: 1px solid var(--acento);
+}
