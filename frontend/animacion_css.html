@@ -13,24 +13,23 @@
     <!--|estructuracion_animacion_css|-->
     <!---------------------------------->
     <main class="app">
-        <!-- ENCABEZADO: título y descripción -->
         <header class="encabezado">
             <h1>Animación CSS</h1>
             <p>Una figura que se mueve con animaciones hechas solo con CSS.</p>
         </header>
-        <!-- ESCENARIO: la caja oscura donde se mueve la figura -->
+        <!---------------------------->
+        <!--|escenario_de_animacion|-->
+        <!---------------------------->
         <section id="escenario" class="escenario" aria-label="Escenario de animación">
-            <!-- La figura: JavaScript le cambia las clases para variar forma y movimiento -->
             <div id="figura" class="figura"></div>
         </section>
-        <!-- PANEL DE CONTROLES -->
+        <!------------------------>
+        <!--|panel_de_controles|-->
+        <!------------------------>
         <section class="panel">
             <h2>Controles</h2>
-            <!-- Agrupamos los controles para detectar sus cambios con un solo evento -->
             <form id="controles" onsubmit="return false">
-                <!-- Fila 1: forma y movimiento -->
                 <div class="fila">
-                    <!-- Lista para elegir la forma de la figura -->
                     <div class="campo">
                         <label for="forma">Forma</label>
                         <select id="forma">
@@ -39,7 +38,6 @@
                             <option value="triangulo">Triángulo</option>
                         </select>
                     </div>
-                    <!-- Lista para elegir el tipo de movimiento -->
                     <div class="campo">
                         <label for="movimiento">Movimiento</label>
                         <select id="movimiento">
@@ -50,21 +48,25 @@
                         </select>
                     </div>
                 </div>
-                <!-- Fila 2: color y duración -->
+                <!----------------------------------->
+                <!--|seleccion_de_color_y_duracion|-->
+                <!----------------------------------->
                 <div class="fila">
-                    <!-- Selector de color -->
                     <div class="campo">
                         <label for="color">Color</label>
                         <input type="color" id="color">
                     </div>
-                    <!-- Deslizador de duración: más segundos = más lento -->
                     <div class="campo">
-                        <label for="duracion">Duración: <span id="duracionTexto">3 s</span></label>
+                        <label for="duracion">
+                            Duración: <span id="duracionTexto">3 s</span>
+                        </label>
                         <input type="range" id="duracion" min="1" max="8" step="0.5">
                     </div>
                 </div>
             </form>
-            <!-- Botones de acción -->
+            <!----------------------->
+            <!--|botones_de_accion|-->
+            <!----------------------->
             <div class="botones">
                 <button id="btnPausa" class="boton" type="button">Pausar</button>
                 <button id="btnRestablecer" class="boton-claro" type="button">Restablecer</button>

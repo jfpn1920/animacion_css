@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --fondo: #f4f1ec;
+    --panel: #ffffff;
+    --texto: #232029;
+    --texto-suave: #6c6874;
+    --borde: #dcd8d0;
+    --escenario: #1c2233;
+    --acento: #3b3a66;
+    --recorrido: 200px;
+    --radio: 90px;
+}
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: var(--fondo);
+    color: var(--texto);
+    line-height: 1.5;
+    padding: 24px 16px;
+}
+
+/*--------------------------*/
+/*--|estilo_animacion_css|--*/  
+/*--------------------------*/ 
+.app {
+    max-width: 560px;
+    margin: 0 auto;
+}
+.encabezado {
+    margin-bottom: 20px;
+}
+.encabezado h1 {
+    font-size: 2rem;
+    color: var(--acento);
+}
+.encabezado p {
+    color: var(--texto-suave);
+}
+/*------------------------------------*/
+/*--|estilos_escenario_de_animacion|--*/
+/*------------------------------------*/
+.escenario {
+    --color: #e4572e;
+    --duracion: 3s;
+    height: 260px;
+    background: var(--escenario);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+.figura {
+    width: 64px;
+    height: 64px;
+    background: var(--color);
+}
+/*---------------------------------*/
+/*--|estilos_formas_de_la_figura|--*/
+/*---------------------------------*/
+.forma-circulo {
+    border-radius: 50%;
+}
+.forma-cuadrado {
+    border-radius: 8px;
+}
+.forma-triangulo {
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+/*--------------------------------------*/
+/*--|estilos_movimientos_de_la_figura|--*/
+/*--------------------------------------*/
+.mov-horizontal {
+    animation: horizontal var(--duracion) ease-in-out infinite alternate;
+}
+.mov-vertical {
+    animation: vertical var(--duracion) ease-in-out infinite alternate;
+}
+.mov-giro {
+    animation: giro var(--duracion) linear infinite;
+}
+.mov-orbita {
+    animation: orbita var(--duracion) linear infinite;
+}
+/*---------------------------------------------*/
+/*--|estilos_animacion_horizontal_y_vertical|--*/
+/*---------------------------------------------*/
+@keyframes horizontal {
+    from {
+        transform: translateX(calc(var(--recorrido) * -1));
+    }
+    to {
+        transform: translateX(var(--recorrido));
+    }
+}
+@keyframes vertical {
+    from {
+        transform: translateY(-80px);
+    }
+    to {
+        transform: translateY(80px);
+    }
+}
+/*----------------------------------------*/
+/*--|estilos_animacion_de_giro_y_orbita|--*/
+/*----------------------------------------*/
+@keyframes giro {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes orbita {
+    from {
+        transform: rotate(0deg) translateX(var(--radio)) rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg) translateX(var(--radio)) rotate(-360deg);
+    }
+}
+/*--------------------------------*/
+/*--|estilos_panel_de_controles|--*/
+/*--------------------------------*/
+.escenario.pausada .figura {
+    animation-play-state: paused;
+}
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 20px;
+}
+.panel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+}
+.fila {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+.campo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+/*-----------------------*/
+/*--|estilos_controles|--*/
+/*-----------------------*/
+label {
+    font-size: 0.9rem;
+    color: var(--texto-suave);
+}
+select,
+input[type="color"] {
+    width: 100%;
+    height: 40px;
+    padding: 6px;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #fff;
+}
+input[type="range"] {
+    height: 40px;
+}
+.botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+}
+/*----------------------------------*/
+/*--|estilos_generales_de_botones|--*/
+/*----------------------------------*/
+.boton,
+.boton-claro {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.boton {
+    background: var(--acento);
+    color: #fff;
+    border: none;
+}
+.boton-claro {
+    background: none;
+    color: var(--acento);
+    border: 1px solid var(--acento);
+}
